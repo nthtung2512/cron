@@ -1,0 +1,23 @@
+trigger: none
+pr: none
+
+schedules:
+- cron: "0 8 27 3 3" # cron syntax defining a schedule
+  always: true
+  branches:
+    include: 
+    - main # which branches the schedule applies to
+
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: 'printJob'
+  displayName: 'Print current time'
+  steps:
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        echo "The time is $(date)."
